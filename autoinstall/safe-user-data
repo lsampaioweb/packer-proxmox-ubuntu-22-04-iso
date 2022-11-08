@@ -1,0 +1,62 @@
+#cloud-config
+autoinstall:
+  # https://ubuntu.com/server/docs/install/autoinstall-reference
+  version: 1
+
+  refresh-installer:
+    update: yes
+
+  identity:
+    hostname: "{hostname}"
+    username: "{username}"
+    password: "{encrypted_password}"
+
+  user-data:
+    disable_root: false
+    timezone: "America/Maceio"
+
+  packages:
+    - "qemu-guest-agent"
+
+  ssh:
+    install-server: yes
+    authorized-keys: []
+    allow-pw: yes
+
+  network:
+    network:
+      version: 2
+      ethernets:
+        eth0:
+          dhcp4: yes
+          dhcp-identifier: mac
+
+  storage:
+    version: 1
+    config:
+      - {type: disk, id: root_disk, serial: 0QEMU_QEMU_HARDDISK_drive-scsi0, ptable: gpt, wipe: superblock, grub_device: true}
+
+      - {type: partition, id: bios_grub_part, device: root_disk, number: 1, size: 1MB, flag: bios_grub}
+      - {type: partition, id: boot_part     , device: root_disk, number: 2, size: 1G , wipe: superblock}
+      - {type: partition, id: root_part     , device: root_disk, number: 3, size: -1 , wipe: superblock}
+    
+      - {type: lvm_volgroup , id: ubuntu_vg , name: ubuntu_vg, devices: [root_part]}
+
+      - {type: lvm_partition, id: var_lvm , name: var_lvm , volgroup: ubuntu_vg, size: 5GB}
+      - {type: lvm_partition, id: home_lvm, name: home_lvm, volgroup: ubuntu_vg, size: 2GB}
+      - {type: lvm_partition, id: root_lvm, name: root_lvm, volgroup: ubuntu_vg}
+      
+      - {type: format, id: boot_fs    , volume: boot_part, fstype: ext4}
+      - {type: format, id: var_fs     , volume: var_lvm  , fstype: ext4}
+      - {type: format, id: home_fs    , volume: home_lvm , fstype: ext4}
+      - {type: format, id: root_fs    , volume: root_lvm , fstype: ext4}
+      
+      - {type: mount , id: boot_mount , device: boot_fs  , path: /boot}
+      - {type: mount , id: var_mount  , device: var_fs   , path: /var}
+      - {type: mount , id: home_mount , device: home_fs  , path: /home}
+      - {type: mount , id: root_mount , device: root_fs  , path: /}
+
+  late-commands:
+    - echo '{username} ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/{username}
+    - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 ipv6.disable=1"/' /target/etc/default/grub
+    - curtin in-target --target /target update-grub2
