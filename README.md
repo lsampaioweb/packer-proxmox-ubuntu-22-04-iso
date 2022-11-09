@@ -42,7 +42,11 @@ Run these commands on the computer that is running Packer:
     export PKR_VAR_PROXMOX_PACKER_TOKEN=$(secret-tool lookup token "proxmox-packer-token")
   }
 
-04 - Create the necessary folders and files.
+04 - Run the unlock-keyring command on the terminal to unlock the secret - manager.
+  source ~/.bashrc
+  unlock-keyring  
+
+05 - Create the necessary folders and files.
   git submodule add https://github.com/lsampaioweb/packer-proxmox-ubuntu-22-04-iso.git iso
 
   nano config.pkr.hcl
@@ -59,11 +63,6 @@ Run these commands on the computer that is running Packer:
   vm_id             = 900
   vm_name           = "ubuntu-22-04-server-raw"
   iso_file          = "ubuntu-22-04-server-raw.iso"
-  disk_storage_pool = "Ceph_Silver"
-
-05 - Run the unlock-keyring command on the terminal to unlock the secret - manager.
-  source ~/.bashrc
-  unlock-keyring
 
 06 - Run Packer to create the template.
   cd packer
