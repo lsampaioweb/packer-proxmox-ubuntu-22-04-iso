@@ -7,7 +7,7 @@ variable "disk_type" {
 variable "disk_storage_pool" {
   description = "Required. Name of the Proxmox storage pool to store the virtual machine disk on."
   type        = string
-  default     = "local-lvm"
+  default     = "Ceph_Silver"
 }
 
 variable "disk_storage_pool_type" {
