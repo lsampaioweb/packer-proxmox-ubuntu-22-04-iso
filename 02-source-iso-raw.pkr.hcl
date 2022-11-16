@@ -68,6 +68,9 @@ build {
 
   provisioner "ansible" {
     playbook_file = "${local.path_ansible_scripts}/template.yml"
+
+    ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
+    
     // This is a bug/workaround and I didn't like it. 
     // TODO - Find a better solution.
     ansible_ssh_extra_args = ["-oHostKeyAlgorithms=+ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa"]
