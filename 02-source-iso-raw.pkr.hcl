@@ -18,7 +18,11 @@ source "proxmox-iso" "ubuntu" {
   # OS
   iso_file = local.iso_file
   os       = var.os
-
+  vga {
+    type   = var.vga.type
+    memory = var.vga.memory
+  }
+  
   # System
   qemu_agent      = var.qemu_agent
   scsi_controller = var.scsi_controller
