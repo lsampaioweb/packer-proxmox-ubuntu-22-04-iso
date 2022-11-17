@@ -11,6 +11,8 @@ build {
     playbook_file = "${local.path_ansible_scripts}/kvm_node.yml"
 
     ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
+    
+    inventory_file = "${local.path_ansible_scripts}/hosts"
 
     extra_arguments = [
       "-e",
