@@ -7,7 +7,7 @@ variable "sockets" {
 variable "cores" {
   description = "How many CPU cores to give the virtual machine. Defaults to 1."
   type        = number
-  default     = 4
+  default     = 6
 }
 
 variable "cpu_type" {
