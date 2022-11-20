@@ -32,5 +32,5 @@ variable "vga" {
 variable "hotplug" {
   description = "Selectively enable hotplug features. This is a comma separated list of hotplug features: disk, network, cpu, memory, usb and cloudinit. Use 0 to disable hotplug completely."
   type        = string
-  default     = "disk,network,cpu,memory"
+  default     = "disk,network,cpu"
 }
