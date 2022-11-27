@@ -36,7 +36,7 @@ Run these commands on the computer that is running Packer:
   function unlock-keyring ()
   {
     read -rsp "Type your password: " pass
-    export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock)
+    export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --daemonize)
     unset pass
 
     export PKR_VAR_PROXMOX_PACKER_TOKEN=$(secret-tool lookup token "proxmox-packer-token")
