@@ -12,7 +12,7 @@ build {
 
     ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
 
-    inventory_file = "${local.path_ansible_scripts}/hosts"
+    inventory_file = "${local.path_ansible_scripts}/inventory/hosts"
 
     extra_arguments = [
       "-e",
