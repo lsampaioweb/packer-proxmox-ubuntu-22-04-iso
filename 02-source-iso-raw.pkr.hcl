@@ -66,7 +66,7 @@ source "proxmox-iso" "template" {
 }
 
 build {
-  name = "ubuntu"
+  name = var.build_name
 
   sources = ["source.proxmox-iso.ubuntu"]
 

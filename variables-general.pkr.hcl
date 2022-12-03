@@ -1,3 +1,9 @@
+variable "build_name" {
+  description = "The name of the build"
+  type        = string
+  default     = "ubuntu"
+}
+
 variable "node" {
   description = "The node in the Proxmox cluster to create the template."
   type        = string
