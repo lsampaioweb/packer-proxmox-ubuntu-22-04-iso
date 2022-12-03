@@ -1,4 +1,4 @@
-source "proxmox-iso" "ubuntu" {
+source "proxmox-iso" "template" {
   # https://www.packer.io/plugins/builders/proxmox/iso
 
   # Proxmox authentication
@@ -66,7 +66,7 @@ source "proxmox-iso" "ubuntu" {
 }
 
 build {
-  name = "template"
+  name = "ubuntu"
 
   sources = ["source.proxmox-iso.ubuntu"]
 
