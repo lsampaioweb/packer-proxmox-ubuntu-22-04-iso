@@ -68,7 +68,7 @@ source "proxmox-iso" "template" {
 build {
   name = var.build_name
 
-  sources = ["source.proxmox-iso.ubuntu"]
+  sources = ["source.proxmox-iso.template"]
 
   provisioner "ansible" {
     playbook_file = "${local.path_ansible_scripts}/template.yml"
