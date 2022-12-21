@@ -7,7 +7,7 @@ variable "build_name" {
 variable "node" {
   description = "The node in the Proxmox cluster to create the template."
   type        = string
-  default     = "kvm-01"
+  default     = "kvm-02"
 }
 
 variable "vm_id" {
