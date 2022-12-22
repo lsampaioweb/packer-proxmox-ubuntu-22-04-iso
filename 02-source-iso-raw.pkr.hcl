@@ -35,23 +35,31 @@ source "proxmox-iso" "template" {
   # Memory
   memory = var.memory
 
-  # Hard Disk  
-  disks {
-    type              = var.disk_type
-    storage_pool      = var.disk_storage_pool
-    storage_pool_type = var.disk_storage_pool_type
-    disk_size         = var.disk_disk_size
-    cache_mode        = var.disk_cache_mode
-    format            = var.disk_format
-    io_thread         = var.disk_io_thread
+  # Hard Disk
+  dynamic "disks" {
+    for_each = var.disks
+
+    content {
+      type              = disks.value.type
+      storage_pool      = disks.value.storage_pool
+      storage_pool_type = disks.value.storage_pool_type
+      disk_size         = disks.value.size
+      cache_mode        = disks.value.cache_mode
+      format            = disks.value.format
+      io_thread         = disks.value.io_thread
+    }
   }
 
-  # Network
-  network_adapters {
-    bridge   = var.network_adapters_0_bridge
-    vlan_tag = var.network_adapters_0_vlan_tag
-    model    = var.network_adapters_0_model
-    firewall = var.network_adapters_0_firewall
+  # Networks
+  dynamic "network_adapters" {
+    for_each = var.network_adapters
+
+    content {
+      bridge   = network_adapters.value.bridge
+      vlan_tag = network_adapters.value.vlan_tag
+      model    = network_adapters.value.model
+      firewall = network_adapters.value.firewall
+    }
   }
 
   # Boot Command
