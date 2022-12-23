@@ -56,8 +56,8 @@ source "proxmox-iso" "template" {
 
     content {
       bridge   = network_adapters.value.bridge
-      vlan_tag = network_adapters.value.vlan_tag
       model    = network_adapters.value.model
+      vlan_tag = network_adapters.value.vlan_tag
       firewall = network_adapters.value.firewall
     }
   }
