@@ -10,4 +10,6 @@ locals {
   path_encrypted_password = "${local.path_temp_files}/.encrypted-password"
 
   path_ansible_scripts = "${path.cwd}/../ansible"
+
+  ssh_password = file(local.path_random_password)
 }
