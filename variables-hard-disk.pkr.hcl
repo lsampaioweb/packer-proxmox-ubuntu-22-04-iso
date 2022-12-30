@@ -18,7 +18,7 @@ variable "disks" {
   }))
 
   default = {
-    "01" = {
+    "0" = {
       type   = "scsi"
       storage_pool = "Ceph_Silver"
       storage_pool_type = "lvm"
