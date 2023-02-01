@@ -69,7 +69,7 @@ source "proxmox-iso" "template" {
 
   # SSH Connection with the template
   ssh_username = var.ssh_username
-  ssh_password = local.ssh_password
+  ssh_password = file(local.path_random_password)
   ssh_timeout  = var.ssh_timeout
 }
 
