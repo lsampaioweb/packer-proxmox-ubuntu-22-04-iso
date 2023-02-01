@@ -2,7 +2,7 @@ variable "disks" {
   description = "Hard Disks for the VM."
   type = map(object({
     # The type of disk. Can be scsi, sata, virtio or ide. Defaults to scsi.
-    type   = string
+    type = string
     # Required. Name of the Proxmox storage pool to store the virtual machine disk on.
     storage_pool = string
     # Required. The type of the pool. Can be lvm, lvm-thin, zfspool, cephfs, rbd or directory.
@@ -19,13 +19,13 @@ variable "disks" {
 
   default = {
     "0" = {
-      type   = "scsi"
-      storage_pool = "Ceph_Silver"
+      type              = "scsi"
+      storage_pool      = "Ceph_Silver"
       storage_pool_type = "lvm"
-      size = "20G"
-      cache_mode = "none"
-      format = "raw"
-      io_thread = true
+      size              = "20G"
+      cache_mode        = "none"
+      format            = "raw"
+      io_thread         = true
     }
   }
 }
