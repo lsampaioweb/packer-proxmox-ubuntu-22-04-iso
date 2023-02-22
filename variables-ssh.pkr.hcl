@@ -7,5 +7,5 @@ variable "ssh_username" {
 variable "ssh_timeout" {
   description = "The time to wait for SSH to become available."
   type        = string
-  default     = "10m"
+  default     = "20m"
 }
