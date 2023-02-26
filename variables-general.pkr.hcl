@@ -26,10 +26,22 @@ variable "pool" {
   default     = "Template"
 }
 
+variable "bios" {
+  description = "The BIOS to use, options are seabios or ovmf for UEFI."
+  type        = string
+  default     = "seabios"
+}
+
 variable "onboot" {
   description = "Specifies whether a VM will be started during system bootup. Defaults to false."
   type        = bool
   default     = false
+}
+
+variable "task_timeout" {
+  description = "The timeout for Promox API operations, e.g. clones. Defaults to 1 minute."
+  type        = string
+  default     = "10m"
 }
 
 variable "template_description" {

@@ -11,11 +11,14 @@ source "proxmox-iso" "template" {
   vm_id                = var.vm_id
   vm_name              = var.vm_name
   pool                 = var.pool
+  bios                 = var.bios
   onboot               = var.onboot
+  task_timeout         = var.task_timeout
   template_description = var.template_description
   unmount_iso          = var.unmount_iso
 
   # OS
+  boot     = var.boot
   iso_file = local.iso_file
   os       = var.os
   vga {
@@ -28,6 +31,7 @@ source "proxmox-iso" "template" {
   cloud_init_storage_pool = var.cloud_init_storage_pool
 
   # System
+  machine         = var.machine
   qemu_agent      = var.qemu_agent
   scsi_controller = var.scsi_controller
 

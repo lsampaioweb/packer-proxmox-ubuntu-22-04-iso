@@ -1,3 +1,9 @@
+variable "boot" {
+  description = "The boot order for the VM. Ordered string of characters denoting boot order. Options: floppy (a), hard disk (c), CD-ROM (d), or network (n)."
+  type        = string
+  default     = "order=scsi0;ide0;net0"
+}
+
 variable "iso_file" {
   description = "Name to the ISO file to boot from"
   type        = string
@@ -27,10 +33,4 @@ variable "vga" {
     type : "std",
     memory : 16
   }
-}
-
-variable "hotplug" {
-  description = "Selectively enable hotplug features. This is a comma separated list of hotplug features: disk, network, cpu, memory, usb and cloudinit. Use 0 to disable hotplug completely."
-  type        = string
-  default     = "disk,network,cpu"
 }
