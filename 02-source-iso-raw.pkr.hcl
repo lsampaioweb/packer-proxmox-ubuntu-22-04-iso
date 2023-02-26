@@ -18,7 +18,6 @@ source "proxmox-iso" "template" {
   unmount_iso          = var.unmount_iso
 
   # OS
-  boot     = var.boot
   iso_file = local.iso_file
   os       = var.os
   vga {

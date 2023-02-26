@@ -1,9 +1,3 @@
-variable "boot" {
-  description = "The boot order for the VM. Ordered string of characters denoting boot order. Options: floppy (a), hard disk (c), CD-ROM (d), or network (n)."
-  type        = string
-  default     = "order=scsi0;ide0;net0"
-}
-
 variable "iso_file" {
   description = "Name to the ISO file to boot from"
   type        = string
