@@ -1,5 +1,5 @@
 variable "build_name" {
-  description = "The name of the build"
+  description = "The name of the build."
   type        = string
   default     = "ubuntu"
 }

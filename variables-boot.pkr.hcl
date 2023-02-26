@@ -11,7 +11,7 @@ variable "boot_command" {
     "e<wait>",
     "<down><down><down><end>",
     "<bs><bs><bs><bs><wait>",
-    "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ",
+    "autoinstall ip=dhcp net.ifnames=0 biosdevname=0 ipv6.disable=1 ",
     "ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ",
     "---<wait><f10><wait>"
   ]

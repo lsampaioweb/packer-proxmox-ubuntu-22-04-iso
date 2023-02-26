@@ -23,6 +23,10 @@ source "proxmox-iso" "template" {
     memory = var.vga.memory
   }
 
+  # Cloud-Init
+  cloud_init              = var.cloud_init
+  cloud_init_storage_pool = var.cloud_init_storage_pool
+
   # System
   qemu_agent      = var.qemu_agent
   scsi_controller = var.scsi_controller
@@ -81,6 +85,7 @@ build {
   provisioner "ansible" {
     playbook_file = "${local.path_ansible_scripts}/template.yml"
     user          = var.ssh_username
+    use_proxy     = var.use_proxy
 
     ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
 

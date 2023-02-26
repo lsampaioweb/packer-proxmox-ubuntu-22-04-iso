@@ -4,7 +4,7 @@ autoinstall:
   version: 1
 
   refresh-installer:
-    update: yes
+    update: true
 
   identity:
     hostname: "{hostname}"
@@ -15,21 +15,16 @@ autoinstall:
     disable_root: false
     timezone: "America/Maceio"
 
+  package_update: true
+  package_upgrade: true
   packages:
+    - "sudo"
     - "qemu-guest-agent"
 
   ssh:
-    install-server: yes
+    install-server: true
     authorized-keys: []
-    allow-pw: yes
-
-  network:
-    network:
-      version: 2
-      ethernets:
-        eth0:
-          dhcp4: yes
-          dhcp-identifier: mac
+    allow-pw: true
 
   storage:
     version: 1
@@ -57,6 +52,11 @@ autoinstall:
       - {type: mount , id: root_mount , device: root_fs  , path: /}
 
   late-commands:
+    # Add the {username} to the suodoers folder so it does not have to type its password when running elevated commands.
     - echo '{username} ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/{username}
+
+    # Set the network interfaces name to be eth0, eth1 and ethN and Disable IPV6.
     - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 ipv6.disable=1"/' /target/etc/default/grub
+
+    # Update grub to get the new settings.
     - curtin in-target --target /target update-grub2
