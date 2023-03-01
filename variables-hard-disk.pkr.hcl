@@ -21,7 +21,7 @@ variable "disks" {
     "0" = {
       type              = "scsi"
       storage_pool      = "Ceph_Silver"
-      storage_pool_type = "lvm"
+      storage_pool_type = "rbd"
       size              = "20G"
       cache_mode        = "none"
       format            = "raw"
