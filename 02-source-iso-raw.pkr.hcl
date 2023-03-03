@@ -20,6 +20,7 @@ source "proxmox-iso" "template" {
   # OS
   iso_file = local.iso_file
   os       = var.os
+  # serials  = var.serials
   vga {
     type   = var.vga.type
     memory = var.vga.memory
@@ -47,12 +48,12 @@ source "proxmox-iso" "template" {
     for_each = var.disks
 
     content {
+      disk_size         = disks.value.size
       type              = disks.value.type
       storage_pool      = disks.value.storage_pool
       storage_pool_type = disks.value.storage_pool_type
-      disk_size         = disks.value.size
-      cache_mode        = disks.value.cache_mode
       format            = disks.value.format
+      cache_mode        = disks.value.cache_mode
       io_thread         = disks.value.io_thread
     }
   }
