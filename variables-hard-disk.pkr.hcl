@@ -9,11 +9,11 @@ variable "disks" {
     storage_pool = string
     # Required. The type of the pool. Can be lvm, lvm-thin, zfspool, cephfs, rbd or directory.
     storage_pool_type = string
-    # How to cache operations to the disk. Can be none, writethrough, writeback, unsafe or directsync. Defaults to none.
-    cache_mode = string
     # The format of the file backing the disk. Can be raw, cow, qcow, qed, qcow2, vmdk or cloop. Defaults to raw.
     format = string
-    # Create one I/O thread per storage controller, rather than a single thread for all I/O. This can increase performance when multiple disks are used. Requires virtio-scsi-single controller and a scsi or virtio disk. Defaults to false.
+    # How to cache operations to the disk. Can be none, writethrough, writeback, unsafe or directsync. Defaults to none.
+    cache_mode = string
+    # Create one I/O thread per storage controller, rather than a single thread for all I/O. This can increase performance when multiple disks are used. Requires virtio-scsi-single controller and a scsi or virtio disk. Defaults to true.
     io_thread = bool
   }))
 

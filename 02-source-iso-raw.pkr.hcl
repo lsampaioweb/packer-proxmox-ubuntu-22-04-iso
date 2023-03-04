@@ -20,15 +20,14 @@ source "proxmox-iso" "template" {
   # OS
   iso_file = local.iso_file
   os       = var.os
-  # serials  = var.serials
   vga {
     type   = var.vga.type
     memory = var.vga.memory
   }
 
   # Cloud-Init
-  cloud_init              = var.cloud_init
-  cloud_init_storage_pool = var.cloud_init_storage_pool
+  # cloud_init              = var.cloud_init
+  # cloud_init_storage_pool = var.cloud_init_storage_pool
 
   # System
   machine         = var.machine

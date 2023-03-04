@@ -26,16 +26,8 @@ variable "vga" {
   default = {
     type : "std",
     memory : 16
-    # type : "serial0",
-    # memory : 0
   }
 }
-
-# variable "serials" {
-#   description = "([]string) - A list (max 4 elements) of serial ports attached to the virtual machine. It may pass through a host serial device /dev/ttyS0 or create unix socket on the host socket. Each element can be socket or responding to pattern /dev/.+."
-#   type        = list(string)
-#   default     = ["socket"]
-# }
 
 variable "hotplug" {
   description = "Selectively enable hotplug features. This is a comma separated list of hotplug features: disk, network, cpu, memory, usb and cloudinit. Use 0 to disable hotplug completely."

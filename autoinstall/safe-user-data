@@ -15,11 +15,24 @@ autoinstall:
     disable_root: false
     timezone: "America/Maceio"
 
+  apt:
+    preserve_sources_list: false
+    primary:
+      - arches: [default]
+        search:
+          # Day 1+
+          # - "http://local-mirror.homelab"
+          # Day 0
+          - "http://us.archive.ubuntu.com/ubuntu"
+        
   package_update: true
   package_upgrade: true
   packages:
     - "sudo"
     - "qemu-guest-agent"
+
+  # Day 1+
+  # proxy: http://proxy.homelab:3128/
 
   ssh:
     install-server: true
