@@ -1,17 +1,7 @@
 #cloud-config
 autoinstall:
-  # https://cloudinit.readthedocs.io/en/latest/reference/examples.html
+  # https://ubuntu.com/server/docs/install/autoinstall-reference
   version: 1
-
-  # This is just for the VMs created by Packer. 
-  # Terraform will set DHCP or Static IP for each VM.
-  network:
-    network:
-      version: 2
-      ethernets:
-        eth0:
-          dhcp4: true
-          dhcp-identifier: mac
 
   # Day 1+
   # proxy: http://proxy.homelab:3128/
@@ -32,7 +22,6 @@ autoinstall:
   package_update: true
   package_upgrade: true
   packages:
-    - "sudo"
     - "qemu-guest-agent"
 
   identity:
