@@ -7,8 +7,6 @@ variable "disks" {
     type = string
     # Required. Name of the Proxmox storage pool to store the virtual machine disk on.
     storage_pool = string
-    # Required. The type of the pool. Can be lvm, lvm-thin, zfspool, cephfs, rbd or directory.
-    storage_pool_type = string
     # The format of the file backing the disk. Can be raw, cow, qcow, qed, qcow2, vmdk or cloop. Defaults to raw.
     format = string
     # How to cache operations to the disk. Can be none, writethrough, writeback, unsafe or directsync. Defaults to none.
@@ -19,13 +17,12 @@ variable "disks" {
 
   default = {
     "0" = {
-      size              = "20G"
-      type              = "scsi"
-      storage_pool      = "Ceph_Silver"
-      storage_pool_type = "rbd"
-      format            = "raw"
-      cache_mode        = "none"
-      io_thread         = true
+      size         = "20G"
+      type         = "scsi"
+      storage_pool = "Ceph_Silver"
+      format       = "raw"
+      cache_mode   = "none"
+      io_thread    = true
     }
   }
 }

@@ -33,9 +33,9 @@ variable "bios" {
 }
 
 variable "onboot" {
-  description = "Specifies whether a VM will be started during system bootup. Defaults to false."
+  description = "Specifies whether a VM will be started during system bootup. Defaults to true."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "task_timeout" {

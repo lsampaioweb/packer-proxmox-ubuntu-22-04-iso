@@ -43,13 +43,12 @@ source "proxmox-iso" "template" {
     for_each = var.disks
 
     content {
-      disk_size         = disks.value.size
-      type              = disks.value.type
-      storage_pool      = disks.value.storage_pool
-      storage_pool_type = disks.value.storage_pool_type
-      format            = disks.value.format
-      cache_mode        = disks.value.cache_mode
-      io_thread         = disks.value.io_thread
+      disk_size    = disks.value.size
+      type         = disks.value.type
+      storage_pool = disks.value.storage_pool
+      format       = disks.value.format
+      cache_mode   = disks.value.cache_mode
+      io_thread    = disks.value.io_thread
     }
   }
 
