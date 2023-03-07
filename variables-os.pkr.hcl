@@ -1,5 +1,5 @@
 variable "iso_file" {
-  description = "Name to the ISO file to boot from"
+  description = "Name to the ISO file to boot from."
   type        = string
 }
 
@@ -16,7 +16,7 @@ variable "os" {
 }
 
 variable "vga" {
-  description = "The graphics adapter to use. Can be cirrus, none, qxl, qxl2, qxl3, qxl4, serial0, serial1, serial2, serial3, std, virtio, vmware. Defaults to serial0."
+  description = "The graphics adapter to use. Can be cirrus, none, qxl, qxl2, qxl3, qxl4, serial0, serial1, serial2, serial3, std, virtio, vmware. Defaults to std."
   type = object({
     type   = string,
     memory = number
