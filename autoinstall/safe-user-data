@@ -1,5 +1,6 @@
 #cloud-config
 autoinstall:
+  # https://cloudinit.readthedocs.io/en/latest/reference/examples.html
   # https://ubuntu.com/server/docs/install/autoinstall-reference
   version: 1
 
@@ -28,6 +29,14 @@ autoinstall:
     hostname: "{hostname}"
     username: "{username}"
     password: "{encrypted_password}"
+
+  users:
+    - name: "{username}"
+      groups: ["sudo"]
+      shell: "/bin/bash"
+      sudo: "ALL=(ALL) NOPASSWD:ALL"
+      passwd: "{encrypted_password}"
+      lock-passwd: false
 
   user-data:
     disable_root: false
