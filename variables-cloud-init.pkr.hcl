@@ -1,7 +1,7 @@
 variable "cloud_init" {
   description = "If true, add an empty Cloud-Init CDROM drive after the virtual machine has been converted to a template. Defaults to true."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "cloud_init_storage_pool" {
