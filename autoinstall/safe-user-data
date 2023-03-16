@@ -30,14 +30,6 @@ autoinstall:
     username: "{username}"
     password: "{encrypted_password}"
 
-  users:
-    - name: "{username}"
-      groups: ["sudo"]
-      shell: "/bin/bash"
-      sudo: "ALL=(ALL) NOPASSWD:ALL"
-      passwd: "{encrypted_password}"
-      lock-passwd: false
-
   user-data:
     disable_root: false
     timezone: "America/Maceio"
