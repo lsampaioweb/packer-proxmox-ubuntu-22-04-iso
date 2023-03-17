@@ -65,7 +65,7 @@ autoinstall:
       - {type: mount , id: root_mount , device: root_fs  , path: /}
 
   late-commands:
-    # Add the {username} to the suodoers folder so it does not have to type its password when running elevated commands.
+    # Add the {username} to the sudoers folder so it does not have to type its password when running elevated commands.
     - echo '{username} ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/{username}
 
     # Set the correct permission.
