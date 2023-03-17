@@ -1,7 +1,7 @@
 variable "ssh_username" {
   description = "User name that Packer will use to connect to the VM through SSH."
   type        = string
-  default     = "usr_ansible"
+  default     = "usr_packer"
 }
 
 variable "ssh_timeout" {
