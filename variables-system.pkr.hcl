@@ -1,7 +1,7 @@
 variable "machine" {
-  description = "Set the machine type. i440fx or q35. Defaults to i440fx."
+  description = "Set the machine type. i440fx or q35. Defaults to q35."
   type        = string
-  default     = ""
+  default     = "q35"
 }
 
 variable "qemu_agent" {
