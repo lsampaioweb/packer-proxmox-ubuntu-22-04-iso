@@ -8,7 +8,7 @@ build {
   sources = ["source.null.extra-config"]
 
   provisioner "ansible" {
-    playbook_file = "${local.path_ansible_scripts}/kvm_node.yml"
+    playbook_file = "${local.path_ansible_scripts}/kvm_setup.yml"
 
     ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
 
