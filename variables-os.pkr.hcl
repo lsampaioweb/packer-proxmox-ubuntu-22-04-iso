@@ -24,7 +24,7 @@ variable "vga" {
   )
 
   default = {
-    type = "std",
+    type   = "std",
     memory = 16
   }
 }
