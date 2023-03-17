@@ -27,9 +27,9 @@ variable "pool" {
 }
 
 variable "bios" {
-  description = "The BIOS to use, options are seabios or ovmf for UEFI."
+  description = "The BIOS to use, options are seabios or ovmf for UEFI. The default is seabios."
   type        = string
-  default     = "seabios"
+  default     = ""
 }
 
 variable "onboot" {
