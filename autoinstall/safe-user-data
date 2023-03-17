@@ -17,11 +17,11 @@ autoinstall:
   #         # Day 0
   #         - "http://us.archive.ubuntu.com/ubuntu"
 
-  # refresh-installer:
-  #   update: true
+  refresh-installer:
+    update: false
 
-  # package_update: true
-  # package_upgrade: true
+  package_update: false
+  package_upgrade: false
   packages:
     - "qemu-guest-agent"
 
