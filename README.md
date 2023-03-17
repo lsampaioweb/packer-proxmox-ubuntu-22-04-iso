@@ -36,25 +36,11 @@ Run these commands on the computer that is running Packer:
 
 04 - Run the source command on the terminal.
   source ~/.bashrc
-
-05 - Create the necessary folders and files.
-  git submodule add https://github.com/lsampaioweb/packer-proxmox-ubuntu-22-04-iso.git iso
-
-  nano project.pkrvars.hcl
-  vm_id             = 900
-  vm_name           = "ubuntu-22-04-server-raw"
-  iso_file          = "ubuntu-22-04-server-raw.iso"
-
-06 - Run Packer to create the template.
-  cd packer
-  
-  packer init config.pkr.hcl
-  packer build -only="credencials.file.password" -var-file=project.pkrvars.hcl iso/.
-  packer build -only="template.proxmox-iso.ubuntu" -var-file=project.pkrvars.hcl iso/.
-  packer build -only="kvm-node.null.extra-config" -var-file=project.pkrvars.hcl iso/.
-  or 
-  ./pipeline.sh
 ```
+
+See the project: <br/> 
+1. [proxmox-ubuntu-22-04-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-raw "proxmox-ubuntu-22-04-server-raw").
+1. [proxmox-ubuntu-22-04-server-standard](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-standard "proxmox-ubuntu-22-04-server-standard").
 
 # License:
 
