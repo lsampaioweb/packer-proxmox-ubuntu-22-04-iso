@@ -17,11 +17,11 @@ autoinstall:
   #         # Day 0
   #         - "http://us.archive.ubuntu.com/ubuntu"
 
-  refresh-installer:
-    update: true
+  # refresh-installer:
+  #   update: true
 
-  package_update: true
-  package_upgrade: true
+  # package_update: true
+  # package_upgrade: true
   packages:
     - "qemu-guest-agent"
 
@@ -67,6 +67,9 @@ autoinstall:
   late-commands:
     # Add the {username} to the suodoers folder so it does not have to type its password when running elevated commands.
     - echo '{username} ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/{username}
+
+    # Set the correct permission.
+    - chmod 440 /target/etc/sudoers.d/{username}
 
     # Set the network interfaces name to be eth0, eth1 and ethN and Disable IPV6.
     - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0 ipv6.disable=1"/' /target/etc/default/grub
