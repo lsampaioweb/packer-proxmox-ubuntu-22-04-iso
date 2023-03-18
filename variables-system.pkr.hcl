@@ -11,7 +11,7 @@ variable "qemu_agent" {
 }
 
 variable "scsi_controller" {
-  description = "The SCSI controller model to emulate. Can be lsi, lsi53c810, virtio-scsi-pci, virtio-scsi-single, megasas, or pvscsi. Defaults to lsi."
+  description = "The SCSI controller model to emulate. Can be lsi, lsi53c810, virtio-scsi-pci, virtio-scsi-single, megasas, or pvscsi. Defaults to virtio-scsi-single."
   type        = string
   default     = "virtio-scsi-single"
 }

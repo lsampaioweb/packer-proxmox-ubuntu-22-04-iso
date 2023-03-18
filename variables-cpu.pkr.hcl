@@ -5,7 +5,7 @@ variable "sockets" {
 }
 
 variable "cores" {
-  description = "How many CPU cores to give the virtual machine. Defaults to 1."
+  description = "How many CPU cores to give the virtual machine. Defaults to 4."
   type        = number
   default     = 4
 }
