@@ -12,6 +12,9 @@ build {
 
   provisioner "shell-local" {
     inline = [
+      # Make sure the folder exists.
+      "mkdir -p ${local.path_temp_files}",
+
       # Save the generated password in the secret manager.
       "echo -n $(cat ${local.path_random_password}) | secret-tool store --label='${var.vm_name}' password '${var.vm_name}'",
 
