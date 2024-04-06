@@ -6,11 +6,11 @@ Run these commands on the Proxmox node (just once and on any node):
 01 - Create the user that Packer will use.
   pveum user add packer@pve --firstname "Packer" --email "lsampaioweb@gmail.com" --comment "The user that Packer will use."
 
-02 - Create a password for the user.
+02 - Create a password for the user. Copy the valeu, we will use it later.
   uuid
   pveum passwd packer@pve
 
-03 - Create a token for the user.
+03 - Create a token for the user. Copy the value, we will use it later.
   pveum user token add packer@pve packer --comment "The token that Packer will use."
 
 04 - Create a role for the user and set the permissions.
@@ -25,27 +25,35 @@ Run these commands on the computer that is running Packer:
 
 ```bash
 01 - Save the password in the secret manager.
-  secret-tool store --label="proxmox-packer-password" password proxmox-packer-password
+  secret-tool store --label="proxmox-packer-password" password "proxmox-packer-password"
 
-02 - Save the API token in the secret manager.
-  secret-tool store --label="proxmox-packer-token" token proxmox-packer-token
+02 - Confirm the password was correctly saved in the secret manager.
+  secret-tool lookup password "proxmox-packer-password"
 
-03 - Add the API token of the user to the ~/.bashrc file.
+03 - Save the API token in the secret manager.
+  secret-tool store --label="proxmox-packer-token" token "proxmox-packer-token"
+
+04 - Confirm the token was correctly saved in the secret manager.
+  secret-tool lookup token "proxmox-packer-token"
+
+05 - Add the API token of the user to the ~/.bashrc file.
   nano ~/.bashrc
   export PKR_VAR_PROXMOX_PACKER_TOKEN=$(secret-tool lookup token "proxmox-packer-token")
 
-04 - Run the source command on the terminal.
+06 - Run the source command on the terminal.
   source ~/.bashrc
 ```
 
-See the project: <br/> 
+This repository is to be used as a sub-module on other repositories.
+
+See other repositories that use it: <br/>
 1. [proxmox-ubuntu-22-04-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-raw "proxmox-ubuntu-22-04-server-raw").
-1. [proxmox-ubuntu-22-04-server-standard](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-standard "proxmox-ubuntu-22-04-server-standard").
+1. [proxmox-pfsense-CE](https://github.com/lsampaioweb/proxmox-pfsense-CE "proxmox-pfsense-CE").
 
 # License:
 
 [MIT](LICENSE "MIT License")
 
-# Created by: 
+# Created by:
 
 1. Luciano Sampaio.
