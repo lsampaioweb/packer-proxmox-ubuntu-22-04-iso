@@ -1,7 +1,6 @@
 variable "proxmox_url" {
   description = "URL to the Proxmox API, including the full path. https://<server>:<port>/api2/json"
   type        = string
-  default     = "https://kvm.homelab:8006/api2/json"
 }
 
 variable "username" {
