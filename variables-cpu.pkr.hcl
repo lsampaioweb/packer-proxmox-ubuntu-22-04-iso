@@ -11,7 +11,7 @@ variable "cores" {
 }
 
 variable "cpu_type" {
-  description = "The CPU type to emulate. Defaults to kvm64."
+  description = "The CPU type to emulate. Defaults to x86-64-v2-AES."
   type        = string
-  default     = "kvm64"
+  default     = "x86-64-v2-AES"
 }
