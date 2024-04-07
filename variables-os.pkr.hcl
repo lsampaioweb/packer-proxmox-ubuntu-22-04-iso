@@ -6,7 +6,7 @@ variable "iso_file" {
 variable "iso_full_file_path" {
   description = "Path to the ISO file to boot from, expressed as a proxmox datastore path."
   type        = string
-  default     = "CephFS_Bronze:iso/{iso_file}"
+  default     = "CephFS:iso/{iso_file}"
 }
 
 variable "os" {
