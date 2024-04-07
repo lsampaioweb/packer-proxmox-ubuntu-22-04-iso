@@ -14,7 +14,7 @@ variable "network_adapters" {
   default = {
     "01" = {
       # WAN
-      bridge   = "vmbr0"
+      bridge   = "vmbr101"
       model    = "virtio"
       vlan_tag = ""
       firewall = false
