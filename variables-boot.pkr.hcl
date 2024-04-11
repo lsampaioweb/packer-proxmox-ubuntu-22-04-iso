@@ -22,3 +22,15 @@ variable "http_directory" {
   type        = string
   default     = "iso/autoinstall"
 }
+
+variable "http_port_min" {
+  description = "The minimum port to use for the HTTP server started to serve the http_directory. Default is 8000."
+  type        = number
+  default     = null
+}
+
+variable "http_port_max" {
+  description = "The maximum port to use for the HTTP server started to serve the http_directory. Default is 9000."
+  type        = number
+  default     = null
+}
