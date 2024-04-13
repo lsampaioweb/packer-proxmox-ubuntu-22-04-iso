@@ -15,7 +15,7 @@ build {
     inventory_file = "${local.path_ansible_scripts}/inventory/hosts"
 
     extra_arguments = [
-      "-e",
+      "--extra-vars",
       "node=${var.node} vm_id=${var.vm_id} hotplug=${var.hotplug} storage_pool=${var.cloud_init_storage_pool}"
     ]
   }
