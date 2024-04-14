@@ -48,7 +48,6 @@ This repository is to be used as a sub-module on other repositories.
 
 See other repositories that use it: <br/>
 1. [proxmox-ubuntu-22-04-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-raw "proxmox-ubuntu-22-04-server-raw").
-1. [proxmox-pfsense-CE](https://github.com/lsampaioweb/proxmox-pfsense-CE "proxmox-pfsense-CE").
 
 # License:
 
