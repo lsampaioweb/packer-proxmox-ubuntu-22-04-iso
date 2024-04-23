@@ -40,7 +40,8 @@ source "proxmox-iso" "template" {
   cpu_type = var.cpu_type
 
   # Memory
-  memory = var.memory
+  memory             = var.memory
+  ballooning_minimum = var.ballooning_minimum
 
   # Hard Disk
   dynamic "disks" {
