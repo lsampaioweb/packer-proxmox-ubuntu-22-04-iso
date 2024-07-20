@@ -5,15 +5,15 @@ autoinstall:
   version: 1
 
   # Day 1+
-  # proxy: http://proxy.homelab:3128/
-  
+  # proxy: http://proxy.lan.homelab:3128/
+
   # apt:
   #   preserve_sources_list: true
   #   primary:
   #     - arches: [default]
   #       search:
   #         # Day 1+
-  #         # - "http://local-mirror.homelab"
+  #         # - "http://local-mirror.lan.homelab"
   #         # Day 0
   #         - "http://us.archive.ubuntu.com/ubuntu"
 
@@ -47,18 +47,18 @@ autoinstall:
       - {type: partition, id: bios_grub_part, device: root_disk, number: 1, size: 1MB, flag: bios_grub}
       - {type: partition, id: boot_part     , device: root_disk, number: 2, size: 1G , wipe: superblock}
       - {type: partition, id: root_part     , device: root_disk, number: 3, size: -1 , wipe: superblock}
-    
+
       - {type: lvm_volgroup , id: ubuntu_vg , name: ubuntu_vg, devices: [root_part]}
 
       - {type: lvm_partition, id: var_lvm , name: var_lvm , volgroup: ubuntu_vg, size: 5GB}
       - {type: lvm_partition, id: home_lvm, name: home_lvm, volgroup: ubuntu_vg, size: 2GB}
       - {type: lvm_partition, id: root_lvm, name: root_lvm, volgroup: ubuntu_vg}
-      
+
       - {type: format, id: boot_fs    , volume: boot_part, fstype: ext4}
       - {type: format, id: var_fs     , volume: var_lvm  , fstype: ext4}
       - {type: format, id: home_fs    , volume: home_lvm , fstype: ext4}
       - {type: format, id: root_fs    , volume: root_lvm , fstype: ext4}
-      
+
       - {type: mount , id: boot_mount , device: boot_fs  , path: /boot}
       - {type: mount , id: var_mount  , device: var_fs   , path: /var}
       - {type: mount , id: home_mount , device: home_fs  , path: /home}
