@@ -26,11 +26,11 @@ variable "http_directory" {
 variable "http_port_min" {
   description = "The minimum port to use for the HTTP server started to serve the http_directory. Default is 8000."
   type        = number
-  default     = null
+  default     = 8100
 }
 
 variable "http_port_max" {
   description = "The maximum port to use for the HTTP server started to serve the http_directory. Default is 9000."
   type        = number
-  default     = null
+  default     = 8200
 }
