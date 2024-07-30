@@ -95,10 +95,5 @@ build {
     use_proxy     = var.use_proxy
 
     ansible_env_vars = ["ANSIBLE_CONFIG=${local.path_ansible_scripts}/ansible.cfg"]
-
-    extra_arguments = [
-      "--extra-vars",
-      "password_id=${var.vm_name}"
-    ]
   }
 }
