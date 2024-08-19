@@ -1,3 +1,9 @@
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
 # Folders and files with passwords.
 **/tmp/*
 user-data
