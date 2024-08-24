@@ -9,8 +9,8 @@ variable "boot_command" {
   type        = list(string)
   default = [
     "e<wait>",
-    "<down><down><down><end>",
-    "<bs><bs><bs><bs><wait>",
+    "<down><wait><down><wait><down><wait><end><wait>",
+    "<bs><wait><bs><wait><bs><wait><bs><wait>",
     "autoinstall ip=dhcp net.ifnames=0 biosdevname=0 ipv6.disable=1 ",
     "ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ",
     "---<wait><f10><wait>"
