@@ -51,7 +51,7 @@ autoinstall:
       - {type: lvm_volgroup , id: ubuntu_vg , name: ubuntu_vg, devices: [root_part]}
 
       - {type: lvm_partition, id: var_lvm , name: var_lvm , volgroup: ubuntu_vg, size: 5GB}
-      - {type: lvm_partition, id: home_lvm, name: home_lvm, volgroup: ubuntu_vg, size: 2GB}
+      - {type: lvm_partition, id: home_lvm, name: home_lvm, volgroup: ubuntu_vg, size: 5GB}
       - {type: lvm_partition, id: root_lvm, name: root_lvm, volgroup: ubuntu_vg}
 
       - {type: format, id: boot_fs    , volume: boot_part, fstype: ext4}
