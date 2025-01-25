@@ -1,3 +1,26 @@
+variable "iso_type" {
+  description = "Bus type that the ISO will be mounted on. Can be ide, sata or scsi. Defaults to ide."
+  type        = string
+  default     = "ide"
+}
+
+variable "iso_file" {
+  description = "Name to the ISO file to boot from."
+  type        = string
+}
+
+variable "iso_full_file_path" {
+  description = "Path to the ISO file to boot from, expressed as a proxmox datastore path."
+  type        = string
+  default     = "CephFS:iso/{iso_file}"
+}
+
+variable "unmount_iso" {
+  description = "If true, remove the mounted ISO from the template after finishing. Defaults to false."
+  type        = bool
+  default     = true
+}
+
 variable "boot_wait" {
   description = "Gives the virtual machine some time to actually load the ISO."
   type        = string

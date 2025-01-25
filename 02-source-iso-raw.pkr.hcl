@@ -15,11 +15,21 @@ source "proxmox-iso" "template" {
   onboot               = var.onboot
   task_timeout         = var.task_timeout
   template_description = var.template_description
-  unmount_iso          = var.unmount_iso
+
+  # Boot
+  boot_iso {
+    type     = var.iso_type
+    iso_file = local.iso_file
+    unmount  = var.unmount_iso
+  }
+  boot_wait      = var.boot_wait
+  http_directory = var.http_directory
+  boot_command   = var.boot_command
+  http_port_min  = var.http_port_min
+  http_port_max  = var.http_port_max
 
   # OS
-  iso_file = local.iso_file
-  os       = var.os
+  os = var.os
   vga {
     type   = var.vga.type
     memory = var.vga.memory
@@ -70,13 +80,6 @@ source "proxmox-iso" "template" {
       firewall = network_adapters.value.firewall
     }
   }
-
-  # Boot Command
-  boot_wait      = var.boot_wait
-  http_directory = var.http_directory
-  boot_command   = var.boot_command
-  http_port_min  = var.http_port_min
-  http_port_max  = var.http_port_max
 
   # SSH Connection with the template
   ssh_username = var.ssh_username
