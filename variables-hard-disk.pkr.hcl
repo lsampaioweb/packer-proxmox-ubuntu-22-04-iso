@@ -24,7 +24,7 @@ variable "disks" {
       storage_pool = "Ceph_Gold"
       type         = "scsi"
       format       = "raw"
-      disk_size    = "20G"
+      disk_size    = "30G"
       cache_mode   = "none"
       io_thread    = true
       discard      = true

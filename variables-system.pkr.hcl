@@ -1,5 +1,5 @@
 variable "machine" {
-  description = "Set the machine type. i440fx or q35. Defaults to i440fx."
+  description = "Set the machine type. i440fx(pc) or q35. Defaults to i440fx."
   type        = string
   default     = null
 }

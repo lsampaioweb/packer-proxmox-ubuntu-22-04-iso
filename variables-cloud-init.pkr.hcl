@@ -4,6 +4,12 @@ variable "cloud_init" {
   default     = false
 }
 
+variable "cloud_init_disk_type" {
+  description = "The type of Cloud-Init disk. Can be scsi, sata, or ide Defaults to ide"
+  type        = string
+  default     = "ide"
+}
+
 variable "cloud_init_storage_pool" {
   description = "Name of the Proxmox storage pool to store the Cloud-Init CDROM on. If not given, the storage pool of the boot device will be used."
   type        = string

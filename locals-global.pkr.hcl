@@ -2,7 +2,7 @@ locals {
   iso_file = replace(var.iso_full_file_path, "{iso_file}", var.iso_file)
 
   path_user_data           = "${path.cwd}/iso/autoinstall"
-  path_safe_user_data      = "${local.path_user_data}/safe-user-data"
+  path_safe_user_data      = "${local.path_user_data}/safe-user-data-${var.bios}"
   path_encrypted_user_data = "${local.path_user_data}/user-data"
 
   path_temp_files         = "${local.path_user_data}/tmp"

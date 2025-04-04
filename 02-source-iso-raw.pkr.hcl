@@ -7,12 +7,19 @@ source "proxmox-iso" "template" {
   token       = var.token
 
   # General
-  node                 = var.node
-  vm_id                = var.vm_id
-  vm_name              = var.vm_name
-  pool                 = var.pool
-  bios                 = var.bios
+  node    = var.node
+  vm_id   = var.vm_id
+  vm_name = var.vm_name
+  pool    = var.pool
+  bios    = var.bios
+  efi_config {
+    efi_storage_pool  = var.efi_config.efi_storage_pool
+    efi_format        = var.efi_config.efi_format
+    efi_type          = var.efi_config.efi_type
+    pre_enrolled_keys = var.efi_config.pre_enrolled_keys
+  }
   onboot               = var.onboot
+  disable_kvm          = var.disable_kvm
   task_timeout         = var.task_timeout
   template_description = var.template_description
 
@@ -37,6 +44,7 @@ source "proxmox-iso" "template" {
 
   # Cloud-Init
   cloud_init              = var.cloud_init
+  cloud_init_disk_type    = var.cloud_init_disk_type
   cloud_init_storage_pool = var.cloud_init_storage_pool
 
   # System
