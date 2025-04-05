@@ -1,34 +1,33 @@
 source "file" "password" {
-  # Create a unique and big string (our password) and save it in the file. 
-  # e.g: 20b33efa-9302-4b1a-8a38-403d57c8291a
+  # Generate random password.
   content = uuidv4()
-  target  = local.path_random_password
+  target  = local.random_password_file
 }
 
 build {
-  name = "credencials"
+  name = "credentials"
 
   sources = ["source.file.password"]
 
   provisioner "shell-local" {
     inline = [
-      # Make sure the folder exists.
-      "mkdir -p ${local.path_temp_files}",
+      # Ensure temp directory exists.
+      "mkdir -p ${local.temp_dir} || exit 1",
 
-      # Save the generated password in the secret manager.
-      "echo -n $(cat ${local.path_random_password}) | secret-tool store --label='${var.vm_name}' password '${var.vm_name}'",
+      # Store password in keyring with UTC build key.
+      "echo -n $(cat ${local.random_password_file}) | secret-tool store --label='${local.build_key}' password '${local.build_key}' || exit 1",
 
-      # Get the password and create a file with its encrypted value.
-      "mkpasswd --method=SHA-512 --rounds=4096 $(secret-tool lookup password ${var.vm_name}) > ${local.path_encrypted_password}",
+      # Encrypt password for cloud-init.
+      "mkpasswd --method=SHA-512 --rounds=4096 $(secret-tool lookup password ${local.build_key}) > ${local.hashed_password_file} || exit 1",
 
-      # Replace the content of the {hostname} placeholder with the name of this project.
-      "sed -e \"s|{hostname}|${var.vm_name}|g\" ${local.path_safe_user_data} > ${local.path_encrypted_user_data}",
+      # Replace placeholders in user-data.
+      # Use single quotes (') for static strings, double quotes (\") for shell expansion (e.g., $(cat ...)).
+      "sed -e 's|{hostname}|${var.vm_name}|g' ${local.template_user_data} > ${local.final_user_data}",
+      "sed -i 's|{username}|${var.ssh_username}|g' ${local.final_user_data}",
+      "sed -i \"s|{encrypted_password}|$(cat ${local.hashed_password_file})|g\" ${local.final_user_data}",
 
-      # Replace the content of the {username} placeholder with the packer user name.
-      "sed -i \"s|{username}|${var.ssh_username}|g\" ${local.path_encrypted_user_data}",
-
-      # Replace the content of the {encrypted_password} placeholder with the encrypted password that was created.
-      "sed -i \"s|{encrypted_password}|$(cat ${local.path_encrypted_password})|g\" ${local.path_encrypted_user_data}"
+      # Clean up temporary files.
+      "rm -f ${local.random_password_file} ${local.hashed_password_file}"
     ]
   }
 }
