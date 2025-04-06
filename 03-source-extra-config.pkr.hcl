@@ -16,7 +16,7 @@ build {
 
     extra_arguments = [
       "--extra-vars",
-      "node=${var.node} vm_id=${var.vm_id} hotplug=${var.hotplug} storage_pool=${var.cloud_init_storage_pool}"
+      "node=${var.node} vm_id=${var.vm_id} hotplug=${var.hotplug} storage_pool=${local.storage_pool}"
     ]
   }
 }
