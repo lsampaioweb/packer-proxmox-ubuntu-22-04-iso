@@ -18,10 +18,10 @@ source "proxmox-iso" "template" {
   # Firmware
   bios = var.bios
   efi_config {
-    efi_storage_pool  = var.efi_config.efi_storage_pool
-    efi_format        = var.efi_config.efi_format
-    efi_type          = var.efi_config.efi_type
-    pre_enrolled_keys = var.efi_config.pre_enrolled_keys
+    efi_storage_pool  = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_storage_pool", var.efi_default_storage_pool)
+    efi_format        = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_format", var.efi_default_format)
+    efi_type          = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_type", var.efi_default_type)
+    pre_enrolled_keys = var.bios != "ovmf" ? null : lookup(var.efi_config, "pre_enrolled_keys", var.efi_default_pre_enrolled_keys)
   }
 
   # Behavior
