@@ -1,7 +1,7 @@
 variable "bios" {
-  description = "The BIOS to use, options are seabios or ovmf for UEFI. The default is seabios."
+  description = "The BIOS to use, options are seabios or ovmf for UEFI. The default is ovmf."
   type        = string
-  default     = "seabios"
+  default     = "ovmf"
 
   validation {
     condition     = contains(["seabios", "ovmf"], var.bios)
