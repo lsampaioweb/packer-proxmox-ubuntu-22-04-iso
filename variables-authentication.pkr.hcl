@@ -10,15 +10,17 @@ variable "username" {
 }
 
 variable "token" {
-  description = "Packer Token for authenticating API calls."
+  description = "Token for authenticating Proxmox API calls. Takes precedence over password if both are set. Can be set via PKR_VAR_PROXMOX_PACKER_TOKEN env var."
   type        = string
   sensitive   = true
-  default     = env("PKR_VAR_PROXMOX_PACKER_TOKEN")
+  default     = env("PKR_VAR_PROXMOX_PACKER_TOKEN") != "" ? env("PKR_VAR_PROXMOX_PACKER_TOKEN") : null
+}
 
-  validation {
-    condition     = length(var.token) > 0
-    error_message = "The Packer Token for authenticating API calls in Proxmox is required."
-  }
+variable "password" {
+  description = "Password for Proxmox user auth. Used if token is unset. Can be set via PKR_VAR_PROXMOX_PACKER_PASSWORD env var."
+  type        = string
+  sensitive   = true
+  default     = env("PKR_VAR_PROXMOX_PACKER_PASSWORD") != "" ? env("PKR_VAR_PROXMOX_PACKER_PASSWORD") : null
 }
 
 variable "insecure_skip_tls_verify" {
@@ -28,7 +30,11 @@ variable "insecure_skip_tls_verify" {
 }
 
 variable "task_timeout" {
-  description = "The timeout for Promox API operations, e.g. clones. Defaults to 1 minute."
+  description = "The timeout for Proxmox API operations, e.g. clones. Defaults to 20 minutes."
   type        = string
   default     = "20m"
+  validation {
+    condition     = can(regex("^[0-9]+[smh]$", var.task_timeout))
+    error_message = "Task timeout must be a duration like '30s', '10m' or '1h'."
+  }
 }
