@@ -1,7 +1,7 @@
 variable "build_name" {
   description = "The name of the build."
   type        = string
-  default     = "ubuntu"
+  default     = "Ubuntu"
 }
 
 variable "node" {
@@ -12,10 +12,14 @@ variable "node" {
 variable "vm_id" {
   description = "The ID used to reference the virtual machine. This will also be the ID of the final template. If not given, the next free ID on the node will be used."
   type        = number
+  validation {
+    condition     = var.vm_id == null || (var.vm_id >= 100 && var.vm_id <= 999999999)
+    error_message = "The vm_id must be between 100 and 999999999 if specified."
+  }
 }
 
 variable "vm_name" {
-  description = "Name of the virtual machine during creation. If not given, a isotime will be used."
+  description = "Name of the virtual machine during creation. If not given, Packer will generate a random name."
   type        = string
 }
 
