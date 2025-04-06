@@ -103,7 +103,7 @@ source "proxmox-iso" "template" {
 }
 
 build {
-  name = var.build_name
+  name = "build"
 
   sources = ["source.proxmox-iso.template"]
 
