@@ -14,6 +14,6 @@ locals {
   # Add date if multiple templates of the same vm_name might be created (e.g., ubuntu-24-04-server-raw-2025-04-15-17-22).
   build_key = "${var.vm_name}-${formatdate("YYYY-MM-DD-hh-mm", timestamp())}"
 
-  # Fallback to the boot disk's storage pool if cloud_init_storage_pool is null
-  storage_pool = var.cloud_init_storage_pool != null ? var.cloud_init_storage_pool : var.disks[0].storage_pool
+  # Fallback to the boot disk's storage pool if cloud_init_storage_pool is null.
+  storage_pool = var.cloud_init_storage_pool != null ? var.cloud_init_storage_pool : lookup(var.disks[0], "storage_pool", var.disk_default_storage_pool)
 }

@@ -72,14 +72,14 @@ source "proxmox-iso" "template" {
     for_each = var.disks
 
     content {
-      storage_pool = disks.value.storage_pool
-      type         = disks.value.type
-      format       = disks.value.format
-      disk_size    = disks.value.disk_size
-      cache_mode   = disks.value.cache_mode
-      io_thread    = disks.value.io_thread
-      discard      = disks.value.discard
-      ssd          = disks.value.ssd
+      storage_pool = lookup(disks.value, "storage_pool", var.disk_default_storage_pool)
+      type         = lookup(disks.value, "type", var.disk_default_type)
+      format       = lookup(disks.value, "format", var.disk_default_format)
+      disk_size    = lookup(disks.value, "disk_size", var.disk_default_disk_size)
+      cache_mode   = lookup(disks.value, "cache_mode", var.disk_default_cache_mode)
+      io_thread    = lookup(disks.value, "io_thread", var.disk_default_io_thread)
+      discard      = lookup(disks.value, "discard", var.disk_default_discard)
+      ssd          = lookup(disks.value, "ssd", var.disk_default_ssd)
     }
   }
 
@@ -88,10 +88,10 @@ source "proxmox-iso" "template" {
     for_each = var.network_adapters
 
     content {
-      bridge   = network_adapters.value.bridge
-      model    = network_adapters.value.model
-      vlan_tag = network_adapters.value.vlan_tag
-      firewall = network_adapters.value.firewall
+      bridge   = lookup(network_adapters.value, "bridge", var.network_default_bridge)
+      model    = lookup(network_adapters.value, "model", var.network_default_model)
+      vlan_tag = lookup(network_adapters.value, "vlan_tag", var.network_default_vlan_tag)
+      firewall = lookup(network_adapters.value, "firewall", var.network_default_firewall)
     }
   }
 
