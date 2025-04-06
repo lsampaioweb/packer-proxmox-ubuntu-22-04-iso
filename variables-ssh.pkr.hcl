@@ -20,4 +20,9 @@ variable "ssh_timeout" {
   description = "The time to wait for SSH to become available."
   type        = string
   default     = "20m"
+
+  validation {
+    condition     = can(regex("^[0-9]+[smh]$", var.ssh_timeout))
+    error_message = "Ssh_timeout must be a duration like '30s', '10m' or '1h'."
+  }
 }
