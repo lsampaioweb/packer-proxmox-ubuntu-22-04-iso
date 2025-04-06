@@ -24,10 +24,7 @@ build {
       # Use single quotes (') for static strings, double quotes (\") for shell expansion (e.g., $(cat ...)).
       "sed -e 's|{hostname}|${var.vm_name}|g' ${local.template_user_data} > ${local.final_user_data}",
       "sed -i 's|{username}|${var.ssh_username}|g' ${local.final_user_data}",
-      "sed -i \"s|{encrypted_password}|$(cat ${local.hashed_password_file})|g\" ${local.final_user_data}",
-
-      # Clean up temporary files.
-      "rm -f ${local.random_password_file} ${local.hashed_password_file}"
+      "sed -i \"s|{encrypted_password}|$(cat ${local.hashed_password_file})|g\" ${local.final_user_data}"
     ]
   }
 }

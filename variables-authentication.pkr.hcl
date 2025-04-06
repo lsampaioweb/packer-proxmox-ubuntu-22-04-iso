@@ -20,3 +20,15 @@ variable "token" {
     error_message = "The Packer Token for authenticating API calls in Proxmox is required."
   }
 }
+
+variable "insecure_skip_tls_verify" {
+  description = "Skip TLS verification for self-signed certificates."
+  type        = bool
+  default     = false
+}
+
+variable "task_timeout" {
+  description = "The timeout for Promox API operations, e.g. clones. Defaults to 1 minute."
+  type        = string
+  default     = "20m"
+}

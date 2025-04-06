@@ -2,36 +2,42 @@ source "proxmox-iso" "template" {
   # https://www.packer.io/plugins/builders/proxmox/iso
 
   # Proxmox authentication
-  proxmox_url = var.proxmox_url
-  username    = var.username
-  token       = var.token
+  proxmox_url              = var.proxmox_url
+  username                 = var.username
+  token                    = var.token
+  insecure_skip_tls_verify = var.insecure_skip_tls_verify
+  task_timeout             = var.task_timeout
 
   # General
-  node    = var.node
-  vm_id   = var.vm_id
-  vm_name = var.vm_name
-  pool    = var.pool
-  bios    = var.bios
+  node                 = var.node
+  vm_id                = var.vm_id
+  vm_name              = var.vm_name
+  pool                 = var.pool
+  template_description = var.template_description
+
+  # Firmware
+  bios = var.bios
   efi_config {
     efi_storage_pool  = var.efi_config.efi_storage_pool
     efi_format        = var.efi_config.efi_format
     efi_type          = var.efi_config.efi_type
     pre_enrolled_keys = var.efi_config.pre_enrolled_keys
   }
-  onboot               = var.onboot
-  disable_kvm          = var.disable_kvm
-  task_timeout         = var.task_timeout
-  template_description = var.template_description
+
+  # Behavior
+  onboot      = var.onboot
+  disable_kvm = var.disable_kvm
 
   # Boot
   boot_iso {
-    type     = var.iso_type
-    iso_file = local.iso_file
-    unmount  = var.unmount_iso
+    type         = var.iso_type
+    iso_file     = local.iso_file
+    unmount      = var.unmount_iso
+    iso_checksum = var.iso_checksum
   }
   boot_wait      = var.boot_wait
-  http_directory = var.http_directory
   boot_command   = var.boot_command
+  http_directory = var.http_directory
   http_port_min  = var.http_port_min
   http_port_max  = var.http_port_max
 
@@ -89,10 +95,11 @@ source "proxmox-iso" "template" {
     }
   }
 
-  # SSH Connection with the template
-  ssh_username = var.ssh_username
-  ssh_password = file(local.path_random_password)
-  ssh_timeout  = var.ssh_timeout
+  # SSH
+  ssh_username         = var.ssh_username
+  ssh_password         = file(local.random_password_file)
+  ssh_private_key_file = var.ssh_private_key_file
+  ssh_timeout          = var.ssh_timeout
 }
 
 build {

@@ -21,6 +21,12 @@ variable "unmount_iso" {
   default     = true
 }
 
+variable "iso_checksum" {
+  description = "Checksum (type:value) of the ISO file, e.g., 'sha256:abc123...'."
+  type        = string
+  default     = null
+}
+
 variable "boot_wait" {
   description = "Gives the virtual machine some time to actually load the ISO."
   type        = string
