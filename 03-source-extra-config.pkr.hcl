@@ -3,7 +3,7 @@ source "null" "extra-config" {
 }
 
 build {
-  name = "kvm-node"
+  name = "post-config"
 
   sources = ["source.null.extra-config"]
 
