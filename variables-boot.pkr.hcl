@@ -9,7 +9,7 @@ variable "iso_type" {
 }
 
 variable "iso_file" {
-  description = "Name of the ISO file to boot from (e.g., 'Ubuntu-24.04.2-live-server-amd64.iso'). Used in iso_full_file_path."
+  description = "Name of the ISO file to boot from (e.g., 'ubuntu-24.04.2-live-server-amd64.iso'). Used in iso_full_file_path."
   type        = string
 }
 
