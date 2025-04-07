@@ -116,7 +116,7 @@ build {
 
     extra_arguments = [
       "--extra-vars",
-      "password_id=${local.build_key}"
+      "password_id=${var.vm_name}"
     ]
   }
 }

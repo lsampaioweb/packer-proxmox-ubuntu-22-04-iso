@@ -15,10 +15,10 @@ build {
       "mkdir -p ${local.temp_dir} || exit 1",
 
       # Store password in keyring with UTC build key.
-      "echo -n $(cat ${local.random_password_file}) | secret-tool store --label='${local.build_key}' password '${local.build_key}' || exit 1",
+      "echo -n $(cat ${local.random_password_file}) | secret-tool store --label='${var.vm_name}' password '${var.vm_name}' || exit 1",
 
       # Encrypt password for cloud-init.
-      "mkpasswd --method=SHA-512 --rounds=4096 $(secret-tool lookup password ${local.build_key}) > ${local.hashed_password_file} || exit 1",
+      "mkpasswd --method=SHA-512 --rounds=4096 $(secret-tool lookup password ${var.vm_name}) > ${local.hashed_password_file} || exit 1",
 
       # Replace placeholders in user-data.
       # Use single quotes (') for static strings, double quotes (\") for shell expansion (e.g., $(cat ...)).
