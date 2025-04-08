@@ -5,8 +5,22 @@ source "proxmox-iso" "template" {
   proxmox_url              = var.proxmox_url
   username                 = var.username
   token                    = var.token
+  password                 = var.password
   insecure_skip_tls_verify = var.insecure_skip_tls_verify
   task_timeout             = var.task_timeout
+
+  # Boot
+  boot_iso {
+    type         = var.iso_type
+    iso_file     = local.iso_file
+    unmount      = var.unmount_iso
+    iso_checksum = var.iso_checksum
+  }
+  boot_wait      = var.boot_wait
+  boot_command   = var.boot_command
+  http_directory = var.http_directory
+  http_port_min  = var.http_port_min
+  http_port_max  = var.http_port_max
 
   # General
   node                 = var.node
@@ -26,20 +40,8 @@ source "proxmox-iso" "template" {
 
   # Behavior
   onboot      = var.onboot
+  boot        = var.boot
   disable_kvm = var.disable_kvm
-
-  # Boot
-  boot_iso {
-    type         = var.iso_type
-    iso_file     = local.iso_file
-    unmount      = var.unmount_iso
-    iso_checksum = var.iso_checksum
-  }
-  boot_wait      = var.boot_wait
-  boot_command   = var.boot_command
-  http_directory = var.http_directory
-  http_port_min  = var.http_port_min
-  http_port_max  = var.http_port_max
 
   # OS
   os = var.os
