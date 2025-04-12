@@ -24,6 +24,7 @@ variable "vga" {
     condition     = contains(["cirrus", "none", "qxl", "qxl2", "qxl3", "qxl4", "serial0", "serial1", "serial2", "serial3", "std", "virtio", "vmware"], var.vga.type)
     error_message = "Vga type must be one of 'cirrus', 'none', 'qxl', 'qxl2', 'qxl3', 'qxl4', 'serial0', 'serial1', 'serial2', 'serial3', 'std', 'virtio', or 'vmware'."
   }
+
   validation {
     condition     = var.vga.memory >= 4 && var.vga.memory <= 512
     error_message = "Vga memory must be between 4 and 512 MB."

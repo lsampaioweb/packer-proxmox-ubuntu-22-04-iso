@@ -46,8 +46,8 @@ source "proxmox-iso" "template" {
   # OS
   os = var.os
   vga {
-    type   = var.vga.type
-    memory = var.vga.memory
+    type   = var.vga != null ? var.vga.type : null
+    memory = var.vga != null ? var.vga.memory : null
   }
 
   # Cloud-Init
