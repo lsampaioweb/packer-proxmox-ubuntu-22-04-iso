@@ -11,10 +11,11 @@ source "proxmox-iso" "template" {
 
   # Boot
   boot_iso {
-    type         = var.iso_type
-    iso_file     = local.iso_file
-    unmount      = var.unmount_iso
-    iso_checksum = var.iso_checksum
+    type              = var.iso_type
+    iso_file          = local.iso_file
+    iso_checksum      = var.iso_checksum
+    unmount           = var.unmount_iso
+    keep_cdrom_device = var.keep_cdrom_device
   }
   boot_wait      = var.boot_wait
   boot_command   = var.boot_command
@@ -32,7 +33,8 @@ source "proxmox-iso" "template" {
   # Firmware
   bios = var.bios
   efi_config {
-    efi_storage_pool  = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_storage_pool", var.efi_default_storage_pool)
+    # Only this one comes from local, not var.
+    efi_storage_pool  = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_storage_pool", local.efi_default_storage_pool)
     efi_format        = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_format", var.efi_default_format)
     efi_type          = var.bios != "ovmf" ? null : lookup(var.efi_config, "efi_type", var.efi_default_type)
     pre_enrolled_keys = var.bios != "ovmf" ? null : lookup(var.efi_config, "pre_enrolled_keys", var.efi_default_pre_enrolled_keys)
@@ -51,9 +53,10 @@ source "proxmox-iso" "template" {
   }
 
   # Cloud-Init
-  cloud_init              = var.cloud_init
-  cloud_init_disk_type    = var.cloud_init_disk_type
-  cloud_init_storage_pool = var.cloud_init_storage_pool
+  cloud_init           = var.cloud_init
+  cloud_init_disk_type = var.cloud_init_disk_type
+  # Only this one comes from local, not var.
+  cloud_init_storage_pool = local.cloud_init_storage_pool
 
   # System
   machine         = var.machine
@@ -118,7 +121,7 @@ build {
 
     extra_arguments = [
       "--extra-vars",
-      "password_id=${var.vm_name}"
+      "password_id='${var.vm_name}'"
     ]
   }
 }
