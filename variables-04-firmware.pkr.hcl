@@ -12,7 +12,7 @@ variable "bios" {
 variable "efi_default_storage_pool" {
   description = "Default storage pool for the EFI disk if not specified."
   type        = string
-  default     = "local-lvm"
+  default     = null
 }
 
 variable "efi_default_format" {

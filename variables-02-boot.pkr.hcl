@@ -31,6 +31,12 @@ variable "unmount_iso" {
   default     = true
 }
 
+variable "keep_cdrom_device" {
+  description = "Keep CDRom device attached to template if unmounting ISO. Has no effect if unmount is false. Defaults to false."
+  type        = bool
+  default     = false
+}
+
 variable "boot_wait" {
   description = "Gives the virtual machine some time to actually load the ISO."
   type        = string
