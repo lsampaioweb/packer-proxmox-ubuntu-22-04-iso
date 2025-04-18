@@ -38,7 +38,6 @@ variable "efi_config" {
   type        = map(string)
 
   default = {
-    efi_storage_pool  = "local-lvm"
     efi_format        = "raw"
     efi_type          = "4m"
     pre_enrolled_keys = "false"
