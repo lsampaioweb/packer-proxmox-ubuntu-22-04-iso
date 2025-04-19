@@ -10,7 +10,7 @@ variable "os" {
 }
 
 variable "vga" {
-  description = "The graphics adapter to use. Can be cirrus, none, qxl, qxl2, qxl3, qxl4, serial0, serial1, serial2, serial3, std, virtio, vmware. Defaults to std and 16M."
+  description = "The graphics adapter to use. Can be cirrus, none, qxl, qxl2, qxl3, qxl4, serial0, serial1, serial2, serial3, std, virtio, virtio-gl or vmware. Defaults to std and 16M."
   type = object({
     type   = string
     memory = number
@@ -21,8 +21,8 @@ variable "vga" {
   }
 
   validation {
-    condition     = contains(["cirrus", "none", "qxl", "qxl2", "qxl3", "qxl4", "serial0", "serial1", "serial2", "serial3", "std", "virtio", "vmware"], var.vga.type)
-    error_message = "Vga type must be one of 'cirrus', 'none', 'qxl', 'qxl2', 'qxl3', 'qxl4', 'serial0', 'serial1', 'serial2', 'serial3', 'std', 'virtio', or 'vmware'."
+    condition     = contains(["cirrus", "none", "qxl", "qxl2", "qxl3", "qxl4", "serial0", "serial1", "serial2", "serial3", "std", "virtio", "virtio-gl", "vmware"], var.vga.type)
+    error_message = "Vga type must be one of 'cirrus', 'none', 'qxl', 'qxl2', 'qxl3', 'qxl4', 'serial0', 'serial1', 'serial2', 'serial3', 'std', 'virtio', 'virtio-gl' or 'vmware'."
   }
 
   validation {
