@@ -1,4 +1,4 @@
-# packer-proxmox-ubuntu-22-04-iso
+# packer-proxmox-ubuntu-iso
 Repository of a Packer module to create an Ubuntu 22.04 virtual machine (server or desktop) on Proxmox VE from an ISO file.
 
 Run these commands on the Proxmox node (just once and on any node):
@@ -47,7 +47,7 @@ Run these commands on the computer that is running Packer:
 This repository is to be used as a sub-module on other repositories.
 
 See other repositories that use it: <br/>
-1. [proxmox-ubuntu-22-04-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-22-04-server-raw "proxmox-ubuntu-22-04-server-raw").
+1. [proxmox-ubuntu-server-raw](https://github.com/lsampaioweb/proxmox-ubuntu-server-raw "proxmox-ubuntu-server-raw").
 
 #
 ### License:
